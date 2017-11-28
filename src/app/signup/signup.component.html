@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="card text-center w-50 mx-auto">
+    <div class="card-body">
+      <h3>Registration Form</h3>
+      <form novalidate (ngSubmit)="onSubmit()" #signupForm="ngForm">
+
+        <fieldset class="form-group">
+          <input class="form-control" type="email" placeholder="Email" [(ngModel)]="user.email" name="email" email #email="ngModel"
+            required>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" name="password" #password="ngModel"
+            required>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="user.name" name="name" #name="ngModel" minlength="2" maxlength="15" required>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <input class="form-control" type="text" placeholder="Surname" [(ngModel)]="user.surname" name="surname" #surname="ngModel" minlength="2" maxlength="15"
+            required>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <input class="form-control" type="text" placeholder="Adress" [(ngModel)]="user.adress" name="adress" #adress="ngModel">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <input class="form-control" type="tel" placeholder="Tel.Num" [(ngModel)]="user.telnum" name="telnum" #telnum="ngModel" pattern="[0-9]*">
+        </fieldset>
+
+        <button class='btn btn-dark btn-block' type='submit'>Sign up</button>
+      </form>
+    </div>
+  </div>
+</div>

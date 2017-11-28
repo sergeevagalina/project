@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="card text-center w-50 mx-auto">
+        <div class="card-body">
+                  <form novalidate (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                    <fieldset class="form-group">
+                      <input type="email" [(ngModel)]="login.email" name="email" email #email="ngModel" class="form-control" placeholder="E-mail" required>
+                    </fieldset>
+              
+                    <fieldset class="form-group">
+                      <input type="password" placeholder="Password" [(ngModel)]="login.password" name="password" #password="ngModel" class="form-control password" required>
+                    </fieldset>
+                    
+                    <button class='btn btn-dark btn-block' type='submit' [disabled]='!registrationForm.valid'>Log in</button>
+                    <button class='btn btn-light btn-block'>Sign up</button>
+                  </form>
+        </div>
+      </div>
+</div>
+
+
+
+
