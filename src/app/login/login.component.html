@@ -2,19 +2,26 @@
   <div class="card text-center w-50 mx-auto">
     <div class="card-body">
         <p>{{ user | json }}</p>
-      <form novalidate (ngSubmit)="onSubmit()" #loginForm="ngForm">
-        <fieldset class="form-group">
-          <input type="email" [(ngModel)]="login.email" name="email" email #email="ngModel" class="form-control" placeholder="Email"
+      <form novalidate (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm">
+        <fieldset class="form-group" [ngClass]="{'error': loginForm.submitted && !email.valid}">
+          <input type="email" [(ngModel)]="model.email" name="email" email #email="ngModel" class="form-control" placeholder="Email"
             required>
+          <div *ngIf="loginForm.submitted && !email.valid">
+            Email is required.
+          </div>
         </fieldset>
 
-        <fieldset class="form-group">
-          <input type="password" placeholder="Password" [(ngModel)]="login.password" name="password" #password="ngModel" class="form-control password"
+        <fieldset class="form-group" [ngClass]="{ 'error': loginForm.submitted && !password.valid }">
+          <input type="password" placeholder="Password" [(ngModel)]="model.password" name="password" #password="ngModel" class="form-control password"
             required>
+            <div *ngIf="loginForm.submitted && !password.valid">
+                Password is required.
+              </div>
         </fieldset>
 
-        <button class='btn btn-dark btn-block' type='submit' [disabled]='!registrationForm.valid'>Log in</button>
-        <button class='btn btn-light btn-block' routerLink="/signup"> 
+        <button class='btn btn-dark btn-block' type='submit' [disabled]="loading">Log In</button>
+        <p *ngIf="loading">Loading . . .</p>
+        <button class='btn btn-light btn-block' [routerLink]="['/signup']"> 
         Sing Up</button>
       </form>
     </div>
