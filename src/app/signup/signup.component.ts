@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { User } from '../shared/user';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,23 +9,35 @@ import { UserService } from '../services/user.service';
 })
 export class SignupComponent implements OnInit {
 
-  user = new User;
-  savedUser = null;
+  model: any = {};
+  loading = false;
 
-  constructor(private userservice: UserService) { }
+  constructor(
+    private router: Router,
+    private userservice: UserService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.user.email = this.user.email.replace(/@/g, '%40');
-    this.user.id = 1;
-    this.userservice.saveUser(this.user);
-    this.savedUser = this.userservice.getUser('user');
-    console.log('User from localeStorage:');
-    console.log(this.savedUser);
-    console.log(this.savedUser.id);
-    // localStorage.clear();
+  register() {
+    this.loading = true;
+    this.model.email = this.model.email.replace(/@/g, '%40');
+    this.userservice.create(this.model)
+      .subscribe(
+        data => {
+          alert('Registration successful');
+          this.router.navigate(['/login']);
+        },
+        error => {
+          alert('Error');
+          this.loading = false;
+        }
+      );
+
+
+
+
+
   }
 
 }

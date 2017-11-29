@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loading = true;
+    this.model.email = this.model.email.replace(/@/g, '%40');
     this.authenticationservice.login(this.model.email, this.model.password)
       .subscribe(
         data => this.router.navigate([this.returnUrl]),

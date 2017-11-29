@@ -4,6 +4,5 @@ export class User {
     surname: string;
     email: string;
     password: string;
-    address: string;
     telnum: string;
 }

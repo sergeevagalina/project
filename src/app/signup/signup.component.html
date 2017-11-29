@@ -4,36 +4,41 @@
       <h3>Registration Form</h3>
       <p>{{ user | json }}</p>
 
-      <form novalidate (ngSubmit)="onSubmit()" #signupForm="ngForm">
+      <form novalidate (ngSubmit)="signupForm.form.valid && register()" #signupForm="ngForm">
 
-        <fieldset class="form-group">
-          <input class="form-control" type="email" placeholder="Email" [(ngModel)]="user.email" name="email" email #email="ngModel"
+        <fieldset class="form-group" [ngClass]="{ 'error': signupForm.submitted && !email.valid }">
+          <input class="form-control" type="email" placeholder="Email" [(ngModel)]="model.email" name="email" email #email="ngModel"
             required>
+            <div *ngIf="signupForm.submitted && !email.valid">Email is required</div>
+          </div>
         </fieldset>
 
-        <fieldset class="form-group">
-          <input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" name="password" #password="ngModel"
+        <fieldset class="form-group" [ngClass]="{ 'error': signupForm.submitted && !password.valid }">
+          <input type="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" name="password" #password="ngModel"
             required>
+            <div *ngIf="signupForm.submitted && !password.valid">Password is required</div>
+          </div>
         </fieldset>
 
-        <fieldset class="form-group">
-          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="user.name" name="name" #name="ngModel" minlength="2" maxlength="15" required>
+        <fieldset class="form-group" [ngClass]="{ 'error': signupForm.submitted && !name.valid }">
+          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="model.name" name="name" #name="ngModel" minlength="2" maxlength="15" required>
+          <div *ngIf="signupForm.submitted && !name.valid">Name is required</div>
         </fieldset>
 
-        <fieldset class="form-group">
-          <input class="form-control" type="text" placeholder="Surname" [(ngModel)]="user.surname" name="surname" #surname="ngModel" minlength="2" maxlength="15"
+        <fieldset class="form-group" [ngClass]="{ 'error': signupForm.submitted && !name.valid }">
+          <input class="form-control" type="text" placeholder="Surname" [(ngModel)]="model.surname" name="surname" #surname="ngModel" minlength="2" maxlength="15"
             required>
+            <div *ngIf="signupForm.submitted && !surname.valid">Surname is required</div>
         </fieldset>
 
-        <fieldset class="form-group">
-          <input class="form-control" type="text" placeholder="Adress" [(ngModel)]="user.adress" name="adress" #adress="ngModel">
+        <fieldset class="form-group" [ngClass]="{ 'error': signupForm.submitted && !telnum.valid }">
+          <input class="form-control" type="tel" placeholder="Tel.Number" [(ngModel)]="model.telnum" name="telnum" #telnum="ngModel" pattern="[0-9]*">
+          <div *ngIf="signupForm.submitted && !telnum.valid"> Tel.Number must contain only digits</div>
         </fieldset>
 
-        <fieldset class="form-group">
-          <input class="form-control" type="tel" placeholder="Tel.Num" [(ngModel)]="user.telnum" name="telnum" #telnum="ngModel" pattern="[0-9]*">
-        </fieldset>
-
-        <button class='btn btn-dark btn-block' type='submit'>Sign up</button>
+        <button class="btn btn-dark btn-block" type="submit" [disabled]="loading">Sign up</button>
+        <p *ngIf="loading">Loading . . .</p>
+        <button class="btn btn-light btn-block" [routerLink]="['/login']">Cancel</button>
       </form>
     </div>
 <div *ngIf="savedUser" class="card-body">
