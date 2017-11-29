@@ -13,10 +13,11 @@
               <tr *ngFor="let row of rows">
                 <td>{{row.field}}</td>
                 <td>{{row.description}}</td>
-                <button (click)="delete(row)">x</button>
+                <button class="delete-button" (click)="delete(row)">x</button>
               </tr>
             </tbody>
           </table>
+
           <form novalidate (ngSubmit)="tableForm.form.valid && add()" #tableForm="ngForm">
       
                 <input type="text" [(ngModel)]="model.field" name="field" #field="ngModel" class="form-control" placeholder="Field"

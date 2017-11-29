@@ -21,7 +21,6 @@ export class SignupComponent implements OnInit {
 
   register() {
     this.loading = true;
-    // this.model.email = this.model.email.replace(/@/g, '%40');
     this.userservice.create(this.model)
       .subscribe(
         data => {

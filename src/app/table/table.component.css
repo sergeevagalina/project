@@ -10,5 +10,15 @@ form {
 }
 
 .half {
-    width: 50%;
+    width: 60%;
+}
+
+.delete-button {
+    border: none;
+    padding: 6px 20px;
+    border-radius: 4px;
+    font-size: 20px;
+    position: relative;
+    left: 110px;
+    top: 3px;
 }
