@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Http, RequestOptions, Response } from '@angular/http';
 import { User } from '../shared/user';
 
 @Injectable()
 export class UserService {
 
-  constructor() { }
+  constructor(private http: Http) { }
 
-  saveUser(user: User) {
-    let serialUser = JSON.stringify(user);
-    localStorage.setItem('user', serialUser);
-    console.log('User saved!');
+  getById(id: number) {
+    return this.http.get('/api/users').map((response: Response) => response.json());
   }
 
-  getUser(key: string) {
-    return JSON.parse(localStorage.getItem(key));
+  create(user: User) {
+    return this.http.post('/api/users', user).map((response: Response) => response.json());
   }
 }

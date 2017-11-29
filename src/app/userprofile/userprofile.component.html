@@ -1,4 +1,15 @@
 <div class="container">
+  <div class="card mx-auto">
+    <div class="card-body">
+      <h2>Personal Information</h2>
+      <p>{{currentUser.name}}</p>
+      <p>{{currentUser.surname}}</p>
+      <p>{{currentUser.email}}</p>
+      <p>{{currentUser.telnum}}</p>
+      <button class="btn" [routerLink]="['/login']">Log Out</button>
+    </div>
+  </div>
+
   <div class="card text-center w-75 mx-auto">
     <div class="card-body">
         <div class="btn-group" role="group">
