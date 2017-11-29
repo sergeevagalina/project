@@ -1,0 +1,36 @@
+<div class="card mx-auto">
+    <div class="card-body">
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+
+            
+            <tbody *ngIf="rows">
+              <tr *ngFor="let row of rows">
+                <td>{{row.field}}</td>
+                <td>{{row.description}}</td>
+                <button (click)="delete(row)">x</button>
+              </tr>
+            </tbody>
+          </table>
+          <form novalidate (ngSubmit)="tableForm.form.valid && add()" #tableForm="ngForm">
+      
+                <input type="text" [(ngModel)]="model.field" name="field" #field="ngModel" class="form-control" placeholder="Field"
+                  required>
+
+
+                <input type="text" placeholder="Description" [(ngModel)]="model.description" name="description" #description="ngModel" class="form-control half" required>
+
+
+      
+              <button class='btn btn-dark' type='submit' >add</button>
+              <p *ngIf="loading">Loading . . .</p>
+
+            </form>
+
+    </div>
+  </div>

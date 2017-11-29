@@ -1,7 +1,6 @@
 <div class="container">
   <div class="card text-center w-50 mx-auto">
     <div class="card-body">
-        <p>{{ user | json }}</p>
       <form novalidate (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm">
         <fieldset class="form-group" [ngClass]="{'error': loginForm.submitted && !email.valid}">
           <input type="email" [(ngModel)]="model.email" name="email" email #email="ngModel" class="form-control" placeholder="Email"

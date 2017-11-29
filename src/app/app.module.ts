@@ -17,9 +17,11 @@ import { SignupComponent } from './signup/signup.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { TableComponent } from './table/table.component';
 
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+import { TableService } from './services/table.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { AuthenticationService } from './services/authentication.service';
     SignupComponent,
     UserprofileComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { AuthenticationService } from './services/authentication.service';
   providers: [
     UserService,
     AuthenticationService,
+    TableService,
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions
