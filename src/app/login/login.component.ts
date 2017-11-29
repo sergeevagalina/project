@@ -23,11 +23,11 @@ export class LoginComponent implements OnInit {
     this.authenticationservice.logout();
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log(this.returnUrl);
   }
 
   login() {
     this.loading = true;
-    this.model.email = this.model.email.replace(/@/g, '%40');
     this.authenticationservice.login(this.model.email, this.model.password)
       .subscribe(
         data => this.router.navigate([this.returnUrl]),

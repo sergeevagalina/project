@@ -10,7 +10,7 @@ import { MockBackend, MockConnection} from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { routing } from './app-routing';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -34,7 +34,7 @@ import { AuthenticationService } from './services/authentication.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing,
+    AppRoutingModule,
     NgbModule.forRoot(),
     LocalStorageModule.withConfig({
       prefix: 'my-app',

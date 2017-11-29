@@ -1,28 +1,19 @@
 <div class="container">
   <div class="card mx-auto">
     <div class="card-body">
-      <h2>Personal Information</h2>
-      <p>{{currentUser.name}}</p>
-      <p>{{currentUser.surname}}</p>
-      <p>{{currentUser.email}}</p>
-      <p>{{currentUser.telnum}}</p>
-      <button class="btn" [routerLink]="['/login']">Log Out</button>
+        <i class="fa fa-user-o fa-5x" aria-hidden="true"></i>
+        <div class="card-content">
+            <h2>{{currentUser.name}}</h2>
+            <h4>Personal Information</h4>
+            <p>Email: {{currentUser.email}}</p>
+            <p *ngIf="currentUser.telnum">Tel.Number: {{currentUser.telnum}}</p>
+            <button class="btn" [routerLink]="['/login']">Log Out</button>
+        </div>
     </div>
   </div>
 
-  <div class="card text-center w-75 mx-auto">
+  <div class="card mx-auto">
     <div class="card-body">
-        <div class="btn-group" role="group">
-            <button type="button" class="btn">
-              <img src="/assets/images/add.svg" alt="Add-button" width="20px">
-            </button>
-            <button type="button" class="btn">
-              <img src="/assets/images/edit.svg" alt="edit-button" width="20px">
-            </button>
-            <button type="button" class="btn">
-                <img src="/assets/images/delete.svg" alt="delete-button" width="20px">
-            </button>
-          </div>
         <table class="table table-dark table-striped">
             <thead>
               <tr>

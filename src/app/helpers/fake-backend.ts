@@ -17,7 +17,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
  
                 // find if any user matches login credentials
                 let filteredUsers = users.filter(user => {
-                    return user.username === params.username && user.password === params.password;
+                    return user.email === params.email && user.password === params.password;
                 });
  
                 if (filteredUsers.length) {
@@ -27,28 +27,16 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                         status: 200,
                         body: {
                             id: user.id,
-                            username: user.username,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
+                            email: user.email,
+                            name: user.name,
+                            surname: user.surname,
+                            telnum: user.telnum,
                             token: 'fake-jwt-token'
                         }
                     })));
                 } else {
                     // else return 400 bad request
-                    connection.mockError(new Error('Username or password is incorrect'));
-                }
- 
-                return;
-            }
- 
-            // get users
-            if (connection.request.url.endsWith('/api/users') && connection.request.method === RequestMethod.Get) {
-                // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
-                if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                    connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: users })));
-                } else {
-                    // return 401 not authorised if token is null or invalid
-                    connection.mockRespond(new Response(new ResponseOptions({ status: 401 })));
+                    connection.mockError(new Error('Email or password is incorrect'));
                 }
  
                 return;
@@ -80,9 +68,9 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 let newUser = JSON.parse(connection.request.getBody());
  
                 // validation
-                let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
+                let duplicateUser = users.filter(user => { return user.email === newUser.email; }).length;
                 if (duplicateUser) {
-                    return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
+                    return connection.mockError(new Error('Email "' + newUser.email + '" is already taken'));
                 }
  
                 // save new user

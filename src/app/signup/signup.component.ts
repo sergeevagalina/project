@@ -21,15 +21,15 @@ export class SignupComponent implements OnInit {
 
   register() {
     this.loading = true;
-    this.model.email = this.model.email.replace(/@/g, '%40');
+    // this.model.email = this.model.email.replace(/@/g, '%40');
     this.userservice.create(this.model)
       .subscribe(
         data => {
-          alert('Registration successful');
+          console.log('Registration successful');
           this.router.navigate(['/login']);
         },
         error => {
-          alert('Error');
+          console.log(error);
           this.loading = false;
         }
       );

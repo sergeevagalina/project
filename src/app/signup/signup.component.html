@@ -10,14 +10,12 @@
           <input class="form-control" type="email" placeholder="Email" [(ngModel)]="model.email" name="email" email #email="ngModel"
             required>
             <div *ngIf="signupForm.submitted && !email.valid">Email is required</div>
-          </div>
         </fieldset>
 
         <fieldset class="form-group" [ngClass]="{ 'error': signupForm.submitted && !password.valid }">
           <input type="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" name="password" #password="ngModel"
             required>
             <div *ngIf="signupForm.submitted && !password.valid">Password is required</div>
-          </div>
         </fieldset>
 
         <fieldset class="form-group" [ngClass]="{ 'error': signupForm.submitted && !name.valid }">
@@ -41,11 +39,6 @@
         <button class="btn btn-light btn-block" [routerLink]="['/login']">Cancel</button>
       </form>
     </div>
-<div *ngIf="savedUser" class="card-body">
-    <p>Registration completed.</p>
-    <a [routerLink]="['/userprofile', savedUser.id]">Go to your profile</a>
-</div>
-        
 
   </div>
 </div>
