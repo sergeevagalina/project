@@ -1,7 +1,9 @@
 <div class="container">
   <div class="card text-center w-50 mx-auto">
-    <div class="card-body">
+    <div *ngIf="!savedUser" class="card-body">
       <h3>Registration Form</h3>
+      <p>{{ user | json }}</p>
+
       <form novalidate (ngSubmit)="onSubmit()" #signupForm="ngForm">
 
         <fieldset class="form-group">
@@ -34,5 +36,11 @@
         <button class='btn btn-dark btn-block' type='submit'>Sign up</button>
       </form>
     </div>
+<div *ngIf="savedUser" class="card-body">
+    <p>Registration completed.</p>
+    <a [routerLink]="['/userprofile', savedUser.id]">Go to your profile</a>
+</div>
+        
+
   </div>
 </div>

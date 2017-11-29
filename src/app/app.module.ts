@@ -13,7 +13,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { FooterComponent } from './footer/footer.component';
     }),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
