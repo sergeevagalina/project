@@ -11,6 +11,7 @@ export class TableComponent implements OnInit {
 
   rows: any = [];
   model: any = {};
+
   constructor(private tableservice: TableService) { }
 
   ngOnInit() {
@@ -30,13 +31,10 @@ export class TableComponent implements OnInit {
       .subscribe(data => console.log("Row added"),
       error => console.log(error));
     this.model = {};
+  }
 
-
-  // delete(row: Row): void {
-  //   this.rows = this.rows.filter(cv => cv !== row);
-  //   this.tableservice.deleteRow(row).subscribe();
-  // }
-
-
-}
+    delete(row: Row) {
+      let rowId = row.id;
+      this.tableservice.deleteRow(rowId).subscribe(() => { this.getRows() });
+  }
 }
